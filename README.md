@@ -2,13 +2,16 @@
 This repository uses RNA-seq data to estimate nuclear speckle phenotypes. It accompanies the manuscript, Alexander et al., which is under preparation (as of 05/31/2023). Nuclear speckles are emerging as a critical layer of gene regulation. However, we lack methods to robustly define speckle phenotypes. The speckle signature is a tool that uses RNA-seq data of speckle-resident protein genes to estimate speckle phenotypes. 
 
 # Requirements
-R packages: [cBioPortalData](https://bioconductor.org/packages/release/bioc/html/cBioPortalData.html), [AnVIL](https://bioconductor.org/packages/release/bioc/html/AnVIL.html), [pheatmap](https://CRAN.R-project.org/package=pheatmap)
+R packages: [cBioPortalData](https://bioconductor.org/packages/release/bioc/html/cBioPortalData.html), [AnVIL](https://bioconductor.org/packages/release/bioc/html/AnVIL.html), [pheatmap](https://CRAN.R-project.org/package=pheatmap), [viridis](https://CRAN.R-project.org/package=viridis), [stringr](https://CRAN.R-project.org/package=stringr), [dplyr](https://CRAN.R-project.org/package=dplyr), [survival](https://CRAN.R-project.org/package=survival), [survminer](https://CRAN.R-project.org/package=survminer), [ggplot2](https://CRAN.R-project.org/package=ggplot2), [hrbrthemes](https://CRAN.R-project.org/package=hrbrthemes), [stats](https://CRAN.R-project.org/package=STAT)
 
 Python 2.7 -- The Python scripts herein are relatively simple. I expect they could easily be converted to [Python3](https://python2to3.com/), but have not tried this.
 
 # Analysis 
 ### Speckle_signature_definition
 Speckle_signature_definition describes how I arrived at the current working definition of the speckle signature.
+
+### Assess_patient_data
+Assess_patient_data describes downloading patient data from cBioPortal and calculating patient outcomes depending on speckle signature. 
 
 ### Calculate_speckle_signature_score
 Calculate_speckle_signature_score describes how to generate speckle scores from RNA-seq data.
