@@ -3,6 +3,7 @@ This repository uses RNA-seq data to estimate nuclear speckle phenotypes. It acc
 
 # Requirements
 R packages: [cBioPortalData](https://bioconductor.org/packages/release/bioc/html/cBioPortalData.html), [AnVIL](https://bioconductor.org/packages/release/bioc/html/AnVIL.html), [pheatmap](https://CRAN.R-project.org/package=pheatmap)
+Python 2.7 -- The Python scripts herein are relatively simple. I expect they could easily be converted to [Python3](https://python2to3.com/), but have not tried this.
 
 # Analysis 
 ### Speckle_signature_definition
