@@ -15,7 +15,9 @@ For a more robust analysis, I included only speckle protein genes with median ex
 I excluded studies with fewer than 50 samples.
 ### Getting a table of speckle protein gene rotations
 The following R script extracts expression of speckle protein genes from cBioPortal
+
 ```Rscript dataAccess_cBioPortal.R```
+
 It returns:
 1. "speckleProteinGeneExpression" - A folder containing expression of speckle protien gene for each cancer study downloaded
 2. "speckleProteinGenes_rotations_allStudiesWithRNA.txt" - A table of PC1 rotations for speckle protein genes for each study. Speckle protein genes with median expression lower than rsem of 150 will be "NA"
@@ -24,12 +26,16 @@ Each of these are included in this repository, downloaded 06/05/2023.
 
 # Comparing speckle protein gene PC1 rotations between cancer types
 The following R script takes the rotations generated in "dataAccess_cBioPortal.R", calculates Pearson correlations, and returns a heatmap of the pairwise Pearson correlations
+
 ```Rscript rotationCorrelations.R```
+
 It shows that 24 of 30 cancer types have highly correlated speckle protein gene PC1 rotations, with 22 of these having particularly strong correlations. This indicates consistent speckle protein gene contributions to patient variation across multiple cancer types, justifying the use of a speckle signature definition that can be used across cancer types.
 
 # Extracting consistent speckle protein genes for speckle signature
 Over the years, I have tried a few different methods for deciding which speckle protein genes to use for defining the multi-cancer speckle signature. Each method has given similar results, indicating a robustness to variation in the ultimate selection of speckle protein genes. The below method counts up how many studies of the 22 highly-consistent cancer types above have positively (Signature I high) or negatively (Signature II high) signed speckle protein gene PC1 rotations:
+
 ```python getConsistentSpeckleGenes.py speckleProteinGenes_rotations_allStudiesWithRNA_noNA.txt > speckleProteinGene_rotationChargeCounts_22cancers.txt```
+
 Using the above file, I generated lists of consistent Signature I ("sigI_speckleProteinGenes_22cancers.txt") and Signature II high ("sigII_speckleProteinGenes_22cancers.txt") speckle protein genes that were found to have the same PC1 rotation sign in 22/22 cancer types. These speckle signature protein genes were used to generate speckle scores. 
 
 # Generate speckle scores and create heatmaps of the speckle signature genes for each cancer type
@@ -40,6 +46,7 @@ sum((z-score sigI gene)*1/(number Sig I genes)) + sum((z-score sigII gene)*-1/(n
 This means that patients with Signature scores that are highly positive are highly Signature I, and patients with Signature scores that are highly negative are highly Signature II
 
 ```Rscript makeHeatmapsFromDownloadedCBioPortal.R```
+
 The above script returns:
 1. "cBioPortal_signatureHeatmaps_22cancers" - A folder containing PDFs of the speckle signature heatmaps for each speckle protein gene
 2. "cBioPortal_signatureSpeckleScores_22cancers" - A folder containing the tables of speckle signature scores for each sample within each study
