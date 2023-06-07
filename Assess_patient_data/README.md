@@ -17,6 +17,7 @@ The above script returns a folder "cBioPortal_survival" that contains three fold
 1. "survival_IvsII" assesses survival by positive and negative speckle scores.
 2. "survival_topQuarterScores" assesses survival by the top and bottom 25% of speckle scores.
 3. "categoricalData_speckleNtile_bargraphs" assesses whether other categorical variables in patient data correlate with speckle signature by spliting patients into quartiles by speckle score and performing Fishers exact tests. 
+
 Desease-specific (DSS) and overall (OS) survival are both assessed, with file names starting with "DSS" or "OS", respectively. 
 
 # Calculate speckle signature impact on survival in early- and late-stage KIRC TCGA cohort
