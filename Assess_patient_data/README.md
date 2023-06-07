@@ -37,3 +37,5 @@ The survival analysis showed that speckle signature predicts survival in the KIR
 
 ```Rscript kirc_VHLmutant_survival_cBioportalData.R```
 
+The above script generates speckle signature Kaplan-Meier plots for VHL mutant and VHL wild type KIRC TCGA, which are stored in "cBioPortal_survival/survival_KIRC_VHLmutStatus"
+
