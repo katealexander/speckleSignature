@@ -38,8 +38,9 @@ patient.data.VHLmut <- patient.data[toupper(patient.data$OTHER_PATIENT_ID) %in% 
 patient.data.VHLcnvLoss <- patient.data[toupper(patient.data$patientId) %in% intersect(toupper(VHLloss.samples$id), toupper(patient.data$patientId)),]
 patient.data.VHLcnvNorm <- patient.data[toupper(patient.data$patientId) %in% intersect(toupper(VHLnorm.samples$id), toupper(patient.data$patientId)),]
 patient.data.VHL.LOF <- unique(rbind(patient.data.VHLmut, patient.data.VHLcnvLoss))
-
 patient.data.VHLwt <- patient.data.VHLcnvNorm[toupper(patient.data.VHLcnvNorm$OTHER_PATIENT_ID) %in% setdiff(toupper(patient.data.VHLcnvNorm$OTHER_PATIENT_ID), toupper(patient.data.VHL.LOF$OTHER_PATIENT_ID)),]
+
+write.table(as.data.frame(patient.data.VHL.LOF), file = "patient.data.VHL.LOF.txt", sep = "\t", row.names = F, quote = F)
 
 if (!dir.exists("cBioPortal_survival/survival_KIRC_VHLmutStatus")){
   dir.create("cBioPortal_survival/survival_KIRC_VHLmutStatus")
