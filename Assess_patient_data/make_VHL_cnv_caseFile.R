@@ -3,7 +3,7 @@ setwd("~/Documents/speckleSignature/Assess_patient_data/")
 library(stringr)
 
 # change this value to the path of the directory of the CNV data
-cnv.data.dir <- "~/Desktop/speckleSignatureAnalysis/gdc_kirc_CNV_20230609/"
+cnv.data.dir <- "~/Desktop/Alexander2023_filesTooBigForGithub/speckleSignature/gdc_kirc_CNV_20230609/"
 
 # load sample sheet, which links samples to file names
 sample.sheet <- read.table("gdc_sample_sheet_CNV.2023-06-08.tsv", sep = "\t", header = T)
