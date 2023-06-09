@@ -32,10 +32,9 @@ The survival analysis showed that speckle signature predicts survival in the KIR
 1. Downloaded Copy Number Variant number data for VHL in the KIRC TCGA cohort from the [GDC](https://portal.gdc.cancer.gov/). Not included in repository because it's not in a very useful format
 2. Used R script "make_VHL_cnv_caseFile.R" to generate "KIRC_VHL_CNV.txt", provided in this repository. This file contains each sample and the minimum copy number of VHL.
 3. Downloaded VHL simple nucleotide variation sample list in the KIRC TCGA cohort from the GDC, called "KIRC_TCGA_VHL_casesEffected.2023-02-24.tsv"
-4. Downloaded the case sets that were assayed for simple nucleotide variation ("case_set_TCGA_KIRC__Simple_Nucleotide_Variation.2023-02-24.tsv") and copy number variation ("case_TCGA_KIRC__Copy_Number_Variation__Gene_Level_Copy_Number.tsv")
-5. In the below script, samples were considered VHL mutant if they contained a simple nucleotide variation or copy number loss in VHL and wild type if they did not. Samples were only considered wild type if they were assayed for both simple nucleotide variation and copy number variation, but were considered mutant if they showed either simple nucleotide variation or copy number loss.
+4. In the below script, samples were considered VHL mutant if they contained a simple nucleotide variation or copy number loss in VHL and wild type if they had two copies of VHL with no simple nucleotide variation.
 
-```Rscript kirc_VHLmutant_survival_cBioportalData.R```
+   ```Rscript kirc_VHLmutant_survival_cBioportalData.R```
 
-The above script generates speckle signature Kaplan-Meier plots for VHL mutant and VHL wild type KIRC TCGA, which are stored in "cBioPortal_survival/survival_KIRC_VHLmutStatus"
+   The above script generates speckle signature Kaplan-Meier plots for VHL mutant and VHL wild type KIRC TCGA, which are stored in "cBioPortal_survival/survival_KIRC_VHLmutStatus"
 

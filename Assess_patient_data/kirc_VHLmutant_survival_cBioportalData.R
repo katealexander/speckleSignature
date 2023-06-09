@@ -30,20 +30,16 @@ patient.data$SpeckleSignature <- with(patient.data, ifelse(SpeckleScore > 0, "I"
 ## get VHL point mutant samples or samples with CNV loss
 VHLmut.samples <- read.table("KIRC_TCGA_VHL_casesEffected.2023-02-24.tsv", header = T)
 VHLcnv.status <- read.table("KIRC_VHL_CNV.txt", header = T)
-VHLloss.samples <- as.data.frame(VHLcnv.status$id[VHLcnv.status$VHLminCopyNumber <= 1])
+VHLloss.samples <- as.data.frame(VHLcnv.status$id[VHLcnv.status$VHLminCopyNumber == 1])
+VHLnorm.samples <- as.data.frame(VHLcnv.status$id[VHLcnv.status$VHLminCopyNumber == 2])
 colnames(VHLloss.samples) <- "id"
-VHLcnvOrMut.samples <- rbind(VHLmut.samples, VHLloss.samples)
-patient.data.VHLmut <- patient.data[toupper(patient.data$OTHER_PATIENT_ID) %in% intersect(toupper(VHLcnvOrMut.samples$id), toupper(patient.data$OTHER_PATIENT_ID)),]
+colnames(VHLnorm.samples) <- "id"
+patient.data.VHLmut <- patient.data[toupper(patient.data$OTHER_PATIENT_ID) %in% intersect(toupper(VHLmut.samples$id), toupper(patient.data$OTHER_PATIENT_ID)),]
+patient.data.VHLcnvLoss <- patient.data[toupper(patient.data$patientId) %in% intersect(toupper(VHLloss.samples$id), toupper(patient.data$patientId)),]
+patient.data.VHLcnvNorm <- patient.data[toupper(patient.data$patientId) %in% intersect(toupper(VHLnorm.samples$id), toupper(patient.data$patientId)),]
+patient.data.VHL.LOF <- unique(rbind(patient.data.VHLmut, patient.data.VHLcnvLoss))
 
-patient.data.VHLwt <- patient.data[toupper(patient.data$OTHER_PATIENT_ID) %in% setdiff(toupper(patient.data$OTHER_PATIENT_ID), toupper(VHLmut.samples$id)),]
-
-## get case set with mutation and CNV data available
-case.set.mut <- read.table("case_set_TCGA_KIRC__Simple_Nucleotide_Variation.2023-02-24.tsv", header = T)
-case.set.cnv <- read.table("case_TCGA_KIRC__Copy_Number_Variation__Gene_Level_Copy_Number.tsv", header = T)
-mut.data.cases <- unique(intersect(case.set.cnv$id, case.set.mut$id))
-
-## only count as wild type if it also has mutation data available
-patient.data.VHLwt <- patient.data.VHLwt[toupper(patient.data.VHLwt$OTHER_PATIENT_ID) %in% intersect(toupper(mut.data.cases), toupper(patient.data.VHLwt$OTHER_PATIENT_ID)),]
+patient.data.VHLwt <- patient.data.VHLcnvNorm[toupper(patient.data.VHLcnvNorm$OTHER_PATIENT_ID) %in% setdiff(toupper(patient.data.VHLcnvNorm$OTHER_PATIENT_ID), toupper(patient.data.VHL.LOF$OTHER_PATIENT_ID)),]
 
 if (!dir.exists("cBioPortal_survival/survival_KIRC_VHLmutStatus")){
   dir.create("cBioPortal_survival/survival_KIRC_VHLmutStatus")
