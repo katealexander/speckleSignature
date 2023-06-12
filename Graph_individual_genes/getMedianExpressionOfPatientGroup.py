@@ -7,7 +7,7 @@ from numpy import median
 from scipy.stats import ttest_ind
 
 def main(args):
-    if len(args) != 4: sys.exit("USAGE: python getMedianExpressionOfPatientGroup.py hg19_genes.txt KIRC_VHLmutant_specklePatientGroups.txt KIRC_VHLmutant_FPKM_UQ.txt > outfile")
+    if len(args) != 4: sys.exit("USAGE: python getMedianExpressionOfPatientGroup.py hg19_genes.txt KIRC_specklePatientGroups.txt ~/Desktop/Alexander2023_filesTooBigForGithub/speckleSignature/KIRC_FPKM_UQ.txt > medianGeneExpression_KIRC_specklepatientGroups.txt")
     
     genes = []
     f = open(args[1])

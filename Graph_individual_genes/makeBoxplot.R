@@ -21,7 +21,7 @@ for (file in list.files(path = "individualGenes/")){
       ylim(0,NA) +
       scale_fill_manual(values = c("#D4A78E", "#BCBEC0", "#9CACB4"))
     fileName = paste("individualGenes/", gene, "_boxplot.pdf", sep="")
-    pdf(fileName, width = 2, height = 2, onefile=FALSE)
+    pdf(fileName, width = 2, height = 2.25, onefile=FALSE)
     print(p)
     dev.off()
   }
