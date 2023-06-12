@@ -1,5 +1,5 @@
 # Graph individual genes
-This pipeline provides instructions for making boxplots in R graphing individual gene expression from the KIRC TCGA cohort split into samples that were tumor speckle Signature I, tumor speckle Signature II, or tumor-adjacent "normal" tissue. 
+This pipeline provides instructions for making boxplots in R graphing individual gene expression from the KIRC TCGA cohort split into samples that were tumor speckle Signature I, tumor speckle Signature II, or tumor-adjacent "normal" tissue. It also generates a file of median expression of each patient group for each gene in the genome, creates a heatmap for the HIF2A targets, and performs functional analysis for HIF2A targets.
 
 # Gene expression file
 RNA expression STAR gene counts TCGA-KIRC project were downloaded from [GDC](https://portal.gdc.cancer.gov/), formatted into table format with FPKM-UQ normalized expression values:
