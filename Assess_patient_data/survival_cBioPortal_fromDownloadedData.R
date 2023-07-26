@@ -62,12 +62,14 @@ for (file in list.files(path = "./patientData_cBioPortal/")){
     patient.data$SpeckleNtile <- as.factor(ntile(patient.data$SpeckleScore, 4))
     
     ## plot survival based on Sig I or II
-    dssfit <- survfit(Surv(DSS_MONTHS, as.numeric(str_sub(patient.data$DSS_STATUS, start = 1, end = 1)))~SpeckleSignature, data = patient.data)
-    p = ggsurvplot(dssfit, conf.int=TRUE, pval=TRUE, legend.labs=c("I", "II"), legend.title="Speckle signature", palette = c("#c66b3d", "#26495c"))
-    fileName = paste("cBioPortal_survival/survival_IvsII/DSS_", study, "_IvsII.pdf", sep = "")
-    pdf(fileName, width = 5, height = 5, onefile=FALSE)
-    print(p)
-    dev.off()
+    if ("DSS_MONTHS" %in% colnames(patient.data)){
+      dssfit <- survfit(Surv(DSS_MONTHS, as.numeric(str_sub(patient.data$DSS_STATUS, start = 1, end = 1)))~SpeckleSignature, data = patient.data)
+      p = ggsurvplot(dssfit, conf.int=TRUE, pval=TRUE, legend.labs=c("I", "II"), legend.title="Speckle signature", palette = c("#c66b3d", "#26495c"))
+      fileName = paste("cBioPortal_survival/survival_IvsII/DSS_", study, "_IvsII.pdf", sep = "")
+      pdf(fileName, width = 5, height = 5, onefile=FALSE)
+      print(p)
+      dev.off()
+    }
     
     osfit <- survfit(Surv(OS_MONTHS, as.numeric(str_sub(patient.data$OS_STATUS, start = 1, end = 1)))~SpeckleSignature, data = patient.data)
     p = ggsurvplot(osfit, conf.int=TRUE, pval=TRUE, legend.labs=c("I", "II"), legend.title="Speckle signature", palette = c("#c66b3d", "#26495c"))
@@ -79,12 +81,14 @@ for (file in list.files(path = "./patientData_cBioPortal/")){
     
     ## plot survival based on top and bottom 25%
     extremes <- patient.data[(patient.data$SpeckleNtile == "1") | (patient.data$SpeckleNtile == "4"),]
-    dssfit <- survfit(Surv(DSS_MONTHS, as.numeric(str_sub(extremes$DSS_STATUS, start = 1, end = 1)))~SpeckleSignature, data = extremes)
-    p = ggsurvplot(dssfit, conf.int=TRUE, pval=TRUE, legend.labs=c("I top 25%", "II top 25%"), legend.title="Speckle Score", palette = c("#c66b3d", "#26495c"))
-    fileName = paste("cBioPortal_survival/survival_topQuarterScores/DSS_", study, "_topQuarterScores.pdf", sep = "")
-    pdf(fileName, width = 5, height = 5, onefile=FALSE)
-    print(p)
-    dev.off()
+    if ("DSS_MONTHS" %in% colnames(patient.data)){
+      dssfit <- survfit(Surv(DSS_MONTHS, as.numeric(str_sub(extremes$DSS_STATUS, start = 1, end = 1)))~SpeckleSignature, data = extremes)
+      p = ggsurvplot(dssfit, conf.int=TRUE, pval=TRUE, legend.labs=c("I top 25%", "II top 25%"), legend.title="Speckle Score", palette = c("#c66b3d", "#26495c"))
+      fileName = paste("cBioPortal_survival/survival_topQuarterScores/DSS_", study, "_topQuarterScores.pdf", sep = "")
+      pdf(fileName, width = 5, height = 5, onefile=FALSE)
+      print(p)
+      dev.off()
+    }
     
     osfit <- survfit(Surv(OS_MONTHS, as.numeric(str_sub(extremes$OS_STATUS, start = 1, end = 1)))~SpeckleSignature, data = extremes)
     p = ggsurvplot(osfit, conf.int=TRUE, pval=TRUE, legend.labs=c("I top 25%", "II top 25%"), legend.title="Speckle Score", palette = c("#c66b3d", "#26495c"))

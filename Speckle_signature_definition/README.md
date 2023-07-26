@@ -24,6 +24,13 @@ It returns:
 3. "studiesWithRNA_cBioPortal.txt", which is the subset of datsets with RNA expression data available (mrna_seq_v2_rsem) for download via cBioPortal
 Each of these are included in this repository, downloaded 06/05/2023. 
 
+# Evaluating speckle protein gene variation in each cancer type separately
+I first wanted to know how speckles vary in each cancer type, expecting that the ways speckles vary may be cancer-type specific (spoiler alert, they weren't!). For this, I extracted the top speckle protein gene contributors to patient variation by taking to speckle protein genes with highest absolute value of rotations, and assessing this independently for each cancer type.
+
+The script "makeHeatmapsFromDownloadedCBioPortal_individualCancerAnalysis.R" makes a heatmap of speckle protein gene expression for each cancer using the speckle protein genes that had an absolute rotation value of > 0.04
+
+The script "compareHighContributors.R" computes pairwise comparisons of the positive and negative rotation high-contributing speckle protein genes and generates heatmaps of the p-values of the overlaps, called "negativeRotation_pvalOfOverlap_heatmap.pdf" and "positiveRotation_pvalOfOverlap_heatmap.pdf". It also generates Venn diagram examples using KIRC and BRCA, called "KIRC_BRCA_pos_venny.pdf" and "KIRCpos_BRCAneg_venny.pdf"
+
 # Comparing speckle protein gene PC1 rotations between cancer types
 The following R script takes the rotations generated in "dataAccess_cBioPortal.R", calculates Pearson correlations, and returns a heatmap of the pairwise Pearson correlations
 
@@ -45,8 +52,10 @@ sum((z-score sigI gene)*1/(number Sig I genes)) + sum((z-score sigII gene)*-1/(n
 
 This means that patients with Signature scores that are highly positive are highly Signature I, and patients with Signature scores that are highly negative are highly Signature II
 
-```Rscript makeHeatmapsFromDownloadedCBioPortal.R```
+```Rscript makeHeatmapsFromDownloadedCBioPortal_consistentSpeckleProteinGenes.R```
 
 The above script returns:
 1. "cBioPortal_signatureHeatmaps_22cancers" - A folder containing PDFs of the speckle signature heatmaps for each speckle protein gene
 2. "cBioPortal_signatureSpeckleScores_22cancers" - A folder containing the tables of speckle signature scores for each sample within each study
+
+

@@ -7,8 +7,8 @@ for (file in list.files(path = "individualGenes/")){
   if (grepl("_patientGroups.txt", file)){
     A <- read.table(paste("individualGenes/", file, sep = ""), sep="\t")
     gene <- strsplit(file, split = "_patientGroups")[[1]][1]
-    # my_specific_comparisons <- list(c("group1", "group2"), c("group2", "group3"), c("group1", "group3"))
-    my_specific_comparisons <- list(c("group1", "group2"), c("group1", "group3"))
+    my_specific_comparisons <- list(c("group1", "group2"), c("group2", "group3"), c("group1", "group3"))
+    #my_specific_comparisons <- list(c("group1", "group2"), c("group1", "group3"))
     p = ggplot(A, aes(x=V2, y=V1, fill=factor(V2))) +
       geom_boxplot(col="black", size=1, outlier.size = 0) +
       geom_jitter(color="grey20", size=.25, alpha= .5) +

@@ -35,7 +35,6 @@ def main(args):
     for i in range(3,len(args)):
         ## add gene symbol to header
         header.append(fileNameDict[os.path.basename(args[i])])
-        print header
         f = open(args[i])
         line = f.readline()[:-1]
         line = f.readline()[:-1]
