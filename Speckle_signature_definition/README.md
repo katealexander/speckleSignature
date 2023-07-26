@@ -48,7 +48,7 @@ Using the above file, I generated lists of consistent Signature I ("sigI_speckle
 # Generate speckle scores and create heatmaps of the speckle signature genes for each cancer type
 Generates heatmaps of the speckle genes from "speckleProteinGenes_22cancers.txt", with an annotation column for the speckle score, which is calculated by the following formula:
 
-sum((z-score sigI gene)*1/(number Sig I genes)) + sum((z-score sigII gene)*-1/(number Sig II genes)
+sum((z-score sigI gene)\*1/(number Sig I genes)) + sum((z-score sigII gene)\*-1/(number Sig II genes)
 
 This means that patients with Signature scores that are highly positive are highly Signature I, and patients with Signature scores that are highly negative are highly Signature II
 
