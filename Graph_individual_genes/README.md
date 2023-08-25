@@ -49,6 +49,10 @@ The above script returns two files:
 1. medianExpression_specklePatientGroups_HIFresponsiveGenes_heatmap.pdf - a heatmap of the HIF2A target genes' median expression in Signature I, Normal, and Signature II groups
 2. clusterProfiler_IvsIIbias_withNS.pdf - functional analysis of I-biased, non-differential, and II-biased HIF2A target genes.
 
+# Make a volcano plot of the HIF2A target genes biased toward speckle Signature I or speckle Signature II
+The following script generates a Volcano plot, called "SigIvsIIbias_volcano.pdf", which graphs the -log p value of gene expression in the Signature I versus Signature II group on the y-axis, and log2 fold change on the x-axis. 
+```Rscript enhancedVolcano.R```
+
 
 
 
