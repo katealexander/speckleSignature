@@ -13,6 +13,25 @@ The above script generates two files:
 1. "speckleScores.txt" - A list of speckle scores for each sample
 2. "speckleSignatureHeatmap_PDX.pdf" - A heatmap of expression of speckle protein genes with the rows sorted by speckle score and the columns hierachically clustered based on expression. Speckle protein genes are annotated at the top of the heatmap. If the sample group shows the cononical speckle signature, Signature I speckle protein genes should roughly cluster together and away from Signature II speckle protein genes.
 
+# Relate speckle scores to drug responses
+## Mouse xenograft tumor responses to HIF2A inhibitor PT2399
+This analysis makes use of RNA-seq data from a patient-derived mouse xenograft study that classified tumors as sensitive or resistant to HIF2A inhibitor, PT2399: [Chen et al., 2016; Nature](https://pubmed.ncbi.nlm.nih.gov/27595394/).
+
+```Rscript checkSpeckleSignature_Chen2016data.R```
+
+The above script generates the file, "metadata_SRP073253_withSpeckleScore.txt", which contains the metadata from Chen et al., 2016 study, with an added column of speckle scores. Negative speckle scores are speckle Signature II, positive speckle scores are speckle Signature I. 
+
+## CheckMate data mTOR inhibitor versus PD1 inhibitor responses split by speckle signature
+This analysis makes use of RNA-seq data from clinical trials (CheckMate cohorts) that applied nivolumab (PD1 inhibitor) or everolimus (mTOR inhibitor): [Braun et al., 2020](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7499153/). 
+
+Note #1: that prior to running the script, I eliminated the header and exchanged "-" for "." (based on how R handles "-").
+
+Note #2: the expression matrix was too large for github, and will need to be downloaded from [Braun et al., 2020](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7499153/), if running script. 
+
+```Rscript checkSpeckleSignature_Braun2020.R```
+
+The above script generates survival plots comparing nivolumab and everolimus in patients with speckle Signature I tumors ("OS_signatureI.pdf") and speckle Signature II tumors ("OS_signatureII.pdf")
+
 
 
 
